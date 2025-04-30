@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Immeubles</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Bouton hamburger -->
+  <div class="menu-toggle" id="menu-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <!-- Flèche pour desktop -->
+<div class="arrow-toggle" id="arrow-toggle">&#10094;</div>
+
+
+  <!-- Barre latérale -->
+  <aside class="sidebar" id="sidebar">
+    <div class="close-sidebar" id="close-sidebar">X</div>
+    <div class="logo">GSC</div>
+    <h2>LE GROUPE SUD<br>CONCEPTION</h2>
+    <nav>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+
+        <li class="has-submenu">
+          <a href="#" class="submenu-toggle">Á propos</a>
+          <ul class="submenu">
+            <li><a href="bio.html">Biographie</a></li>
+            <li><a href="equipe.html">Notre équipe</a></li>
+          </ul>
+        </li>
+
+        <li class="has-submenu">
+          <a href="#" class="submenu-toggle">Réalisations</a>
+          <ul class="submenu">
+            <li><a href="appart.html">Appartements</a></li>
+            <li><a href="immeuble.html">Immeubles</a></li>
+          </ul>
+        </li>
+
+        <li class="has-submenu">
+          <a href="#" class="submenu-toggle">Services</a>
+          <ul class="submenu">
+            <li><a href="architec.html">Architecture</a></li>
+            <li><a href="inte.html">Architecture d'intérieur</a></li>
+            <li><a href="renov.html">Rénovation</Ruby></a></li>
+            <li><a href="conseil.html">Conseil</a></li>
+          </ul>
+        </li>
+
+        <li><a href="contacte.html">Contact</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Contenu principal -->
+  <main class="content main-content">
+    <!-- Vidéo en fond -->
+    <section class="video-header">
+      <video autoplay muted loop playsinline>
+        <source src="img/tiny.mp4" type="video/mp4">
+        Votre navigateur ne supporte pas la vidéo HTML5.
+      </video>
+      <div class="overlay-text">
+        <h1>Nos réalisations en immeubles</h1>
+        <p>Modernité, fonctionnalité, excellence.</p>
+      </div>
+    </section>
+  
+    <!-- Galerie -->
+    <section class="building-gallery">
+      <div class="building-card fade-in-slide" 
+           data-title="Résidence Les Horizons" 
+           data-description="Un immeuble résidentiel de standing avec vue panoramique." 
+           data-image="https://images.unsplash.com/photo-1599422314077-f4dfdaa4cd7b">
+        <img src="https://images.unsplash.com/photo-1599422314077-f4dfdaa4cd7b" alt="Résidence Les Horizons">
+        <div class="building-info">
+          <h2>Résidence Les Horizons</h2>
+          <p>Vue panoramique et architecture moderne.</p>
+        </div>
+      </div>
+  
+      <div class="building-card fade-in-slide" 
+           data-title="Tour Nova" 
+           data-description="Tour commerciale à l’architecture épurée." 
+           data-image="https://images.unsplash.com/photo-1590650046871-92c887180603">
+        <img src="https://images.unsplash.com/photo-1590650046871-92c887180603" alt="Tour Nova">
+        <div class="building-info">
+          <h2>Tour Nova</h2>
+          <p>Conçue pour les espaces collaboratifs modernes.</p>
+        </div>
+      </div>
+  
+      <div class="building-card fade-in-slide" 
+           data-title="Résidence Belle Vue" 
+           data-description="Appartements lumineux avec finitions haut de gamme." 
+           data-image="https://images.unsplash.com/photo-1542626991-cbc4e32524cc">
+        <img src="https://images.unsplash.com/photo-1542626991-cbc4e32524cc" alt="Résidence Belle Vue">
+        <div class="building-info">
+          <h2>Résidence Belle Vue</h2>
+          <p>Lumière naturelle et matériaux nobles.</p>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+      <div class="lightbox-content">
+        <span class="close-lightbox" id="close-lightbox">&times;</span>
+        <img id="lightbox-image" src="" alt="Immeuble">
+        <div class="lightbox-description">
+          <h2 id="lightbox-title"></h2>
+          <p id="lightbox-text"></p>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  
+
+  <script src="app.js"></script>
+
+  <footer>
+    <p>&copy; 2025 LEGROUPESUDCONCEPTION – Site créé par Khansu Group</p>
+  </footer>
+</body>
+</html>
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const content = document.querySelector('.main-content');
+    const sidebar = document.getElementById('sidebar');
+    const menuToggle = document.getElementById('menu-toggle');
+    const closeSidebar = document.getElementById('close-sidebar');
+    const arrowToggle = document.getElementById('arrow-toggle');
+    const rootBody = document.body;
+
+    const cards = document.querySelectorAll(".building-card");
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-image");
+    const lightboxTitle = document.getElementById("lightbox-title");
+    const lightboxText = document.getElementById("lightbox-text");
+    const closeLightbox = document.getElementById("close-lightbox");
+
+    // ✅ Effet d'apparition principal
+    content.classList.add('fade-in');
+
+    // ✅ Mobile : ouvrir la sidebar
+    menuToggle.addEventListener('click', () => {
+      sidebar.classList.add('active');
+    });
+
+    // ✅ Mobile : fermer la sidebar
+    closeSidebar.addEventListener('click', () => {
+      sidebar.classList.remove('active');
+      menuToggle.classList.remove('open');
+    });
+
+    // ✅ Desktop : toggle avec flèche
+    arrowToggle.addEventListener('click', () => {
+      rootBody.classList.toggle('sidebar-closed');
+    });
+
+    // ✅ Gérer les sous-menus (un seul ouvert à la fois)
+    document.querySelectorAll('.submenu-toggle').forEach(toggle => {
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        const parent = toggle.closest('.has-submenu');
+        document.querySelectorAll('.has-submenu').forEach(item => {
+          if (item !== parent) item.classList.remove('active');
+        });
+        parent.classList.toggle('active');
+      });
+    });
+
+    // ✅ Lightbox pour immeubles
+    cards.forEach(card => {
+      card.addEventListener("click", () => {
+        lightboxImg.src = card.dataset.image;
+        lightboxTitle.textContent = card.dataset.title;
+        lightboxText.textContent = card.dataset.description;
+        lightbox.style.display = "flex";
+      });
+    });
+
+    closeLightbox.addEventListener("click", () => {
+      lightbox.style.display = "none";
+    });
+
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) {
+        lightbox.style.display = "none";
+      }
+    });
+  });
+</script>

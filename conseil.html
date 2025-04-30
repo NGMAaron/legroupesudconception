@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conseil</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Bouton hamburger -->
+  <div class="menu-toggle" id="menu-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <!-- Flèche pour desktop -->
+<div class="arrow-toggle" id="arrow-toggle">&#10094;</div>
+
+
+  <!-- Barre latérale -->
+  <aside class="sidebar" id="sidebar">
+    <div class="close-sidebar" id="close-sidebar">X</div>
+    <div class="logo">GSC</div>
+    <h2>LE GROUPE SUD<br>CONCEPTION</h2>
+    <nav>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+
+        <li class="has-submenu">
+          <a href="#" class="submenu-toggle">Á propos</a>
+          <ul class="submenu">
+            <li><a href="bio.html">Biographie</a></li>
+            <li><a href="equipe.html">Notre équipe</a></li>
+          </ul>
+        </li>
+
+        <li class="has-submenu">
+          <a href="#" class="submenu-toggle">Réalisations</a>
+          <ul class="submenu">
+            <li><a href="appart.html">Appartements</a></li>
+            <li><a href="immeuble.html">Immeubles</a></li>
+          </ul>
+        </li>
+
+        <li class="has-submenu">
+          <a href="#" class="submenu-toggle">Services</a>
+          <ul class="submenu">
+            <li><a href="architec.html">Architecture</a></li>
+            <li><a href="inte.html">Architecture d'intérieur</a></li>
+            <li><a href="renov.html">Rénovation</Ruby></a></li>
+            <li><a href="conseil.html">Conseil</a></li>
+          </ul>
+        </li>
+
+        <li><a href="contacte.html">Contact</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Contenu principal -->
+  <main class="content main-content">
+    <section class="intro">
+      <h1>Créer des espaces d'exception</h1>
+      <p>Bienvenue sur le site de le groupe sud conception, votre allié dans la conception de projets modernes et durables. Nous combinons expertise technique et créativité pour bâtir un avenir élégant.</p>
+      <a href="bio.html" class="btn">En savoir plus</a>
+    </section>
+
+    <section class="image-section">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Bâtiment moderne">
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+
+  <footer>
+    <p>&copy; 2025 LEGROUPESUDCONCEPTION – Site créé par Khansu Group</p>
+  </footer>
+</body>
+</html>
+
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const content = document.querySelector('.main-content');
+    const sidebar = document.getElementById('sidebar');
+    const menuToggle = document.getElementById('menu-toggle');
+    const closeSidebar = document.getElementById('close-sidebar');
+    const arrowToggle = document.getElementById('arrow-toggle');
+    const rootBody = document.body;
+  
+    // ✅ Apparition du contenu principal
+    content.classList.add('fade-in');
+  
+    // ✅ Mobile : ouvrir la sidebar
+    menuToggle.addEventListener('click', () => {
+      sidebar.classList.add('active');
+    });
+  
+    // ✅ Mobile : fermer la sidebar avec la croix
+    closeSidebar.addEventListener('click', () => {
+      sidebar.classList.remove('active');
+      menuToggle.classList.remove('open');
+    });
+  
+    // ✅ Desktop : basculer sidebar avec la flèche
+    arrowToggle.addEventListener('click', () => {
+      rootBody.classList.toggle('sidebar-closed');
+    });
+  
+    // ✅ Affichage des sous-menus au clic (et un seul à la fois)
+    document.querySelectorAll('.submenu-toggle').forEach(toggle => {
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        const parent = toggle.closest('.has-submenu');
+        document.querySelectorAll('.has-submenu').forEach(item => {
+          if (item !== parent) item.classList.remove('active');
+        });
+        parent.classList.toggle('active');
+      });
+    });
+  
+    // ✅ Sous-menus peuvent naviguer normalement
+    document.querySelectorAll('.submenu li a').forEach(link => {
+      // Pas de blocage ici : comportement normal (changement de page)
+    });
+  });
+  </script>
