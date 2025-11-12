@@ -3,32 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Biographie</title>
+  <title>Accueil</title>
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="loader-bar" id="loader-bar"></div>
 
-  <!-- Bouton hamburger -->
+
+  <!-- Bouton hamburger (mobile uniquement) -->
   <div class="menu-toggle" id="menu-toggle">
     <span></span>
     <span></span>
     <span></span>
   </div>
-  <!-- Flèche pour desktop -->
-<div class="arrow-toggle" id="arrow-toggle">&#10094;</div>
 
-
-  <!-- Barre latérale -->
+   <!-- Barre latérale -->
   <aside class="sidebar" id="sidebar">
     <div class="close-sidebar" id="close-sidebar">X</div>
-    <div class="logo">GSC</div>
-    <h2>LE GROUPE SUD<br>CONCEPTION</h2>
+  <div class="logo">
+    <img src="img/logo_LEGROUPESUD-CONCEPTION.jpg" alt="Logo Le Groupe Sud Conception">
+  </div>
     <nav>
       <ul>
         <li><a href="index.html">Accueil</a></li>
 
         <li class="has-submenu">
-          <a href="#" class="submenu-toggle">Á propos</a>
+          <a href="#" class="submenu-toggle">À propos</a>
           <ul class="submenu">
             <li><a href="bio.html">Biographie</a></li>
             <li><a href="equipe.html">Notre équipe</a></li>
@@ -48,102 +49,144 @@
           <ul class="submenu">
             <li><a href="architec.html">Architecture</a></li>
             <li><a href="inte.html">Architecture d'intérieur</a></li>
-            <li><a href="renov.html">Rénovation</Ruby></a></li>
+            <li><a href="renov.html">Rénovation</a></li>
             <li><a href="conseil.html">Conseil</a></li>
           </ul>
         </li>
 
+        <li><a href="videos.html">Médias</a></li>
         <li><a href="contacte.html">Contact</a></li>
       </ul>
     </nav>
   </aside>
 
-  <!-- Contenu principal -->
-  <main class="content main-content">
-    <section class="intro">
-      <h1 class="page-title">Biographie</h1>
-  
-      <div class="biography-text">
-        <p>
-          Le groupe Sud Conception est une structure dynamique spécialisée dans la conception et la réalisation de projets innovants. 
-          Fondé avec l'ambition de moderniser les standards architecturaux, il s'engage à offrir des solutions élégantes, durables 
-          et parfaitement adaptées aux besoins contemporains.
-        </p>
-  
-        <p>
-          Grâce à une équipe d'experts passionnés, Sud Conception conjugue esthétique, fonctionnalité et engagement environnemental 
-          dans chacun de ses projets. L'entreprise valorise la collaboration, l'écoute des clients et le respect des délais.
-        </p>
-  
-        <p>Fort de son expertise, le cabinet intervient aussi bien dans la conception de résidences privées que dans la réalisation de projets institutionnels ou commerciaux, 
-          en intégrant des solutions techniques de pointe et une approche sur mesure.
-        </p>
-  
-        <p>
-          Aujourd’hui, Sud Conception continue de grandir et de s'imposer comme un acteur incontournable dans le paysage du design 
-          architectural et numérique.
-        </p>
-      </div>
-    </section>
-  
-    <section class="image-section">
-      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Bâtiment moderne">
-    </section>
-  </main>
-  
+ <!-- Contenu principal -->
+<main class="main-content">
+  <section class="intro">
+    <h1 class="page-title">Biographie</h1>
 
-  <script src="app.js"></script>
+    <div class="biography-text">
+      <p>
+        Depuis 2013, <strong>NDONG Régis Arnaud</strong> exerce son métier d’Architecte avec l’intime conviction que l’architecture doit nécessairement être pluridisciplinaire. 
+        En effet, l’architecture repose sur les échanges entre tous les acteurs qui composent l’équipe de maîtrise d’œuvre, 
+        la maîtrise d’ouvrage et les entreprises.
+      </p>
+
+      <p>
+        En envisageant le projet architectural comme un lieu de partage, cette pluridisciplinarité se veut être la première réponse à la complexité des problématiques de l’architecture contemporaine. 
+        Quelle que soit l’échelle du projet, celui-ci est envisagé avec l’économie du « déjà là », pour ne pas avoir la lourde tâche de repartir à zéro.
+      </p>
+
+      <p>
+        S’appuyer sur les traces du passé, les lignes existantes, les chemins tracés, parce qu’ils sont le reflet d’usages ancrés dans leur territoire,
+        dans une géographie, un paysage et une culture.
+      </p>
+
+      <p>
+        Utiliser le soleil, la lumière, la terre, puisqu’ils sont les garants d’une architecture économe et confortable. 
+        Observer et mettre en valeur ce qui nous entoure, proche ou lointain, parce qu’un édifice n’est jamais un élément isolé. 
+        Partir de ce qui est déjà là, puis continuer, relier, rassembler, enrichir pour apporter une réponse unique,
+        économe et évidente à ceux qui habiteront les lieux.
+      </p>
+
+      <p>
+        Par la structure, les méthodes de conception et de synthèse, 
+        nous garantissons à nos clients une <strong>maîtrise d’œuvre complète</strong> :
+      </p>
+
+      <ul>
+        <li>Synthèse des besoins formulés par les utilisateurs et traduction dans la conception des espaces et la qualité architecturale de l’ouvrage bâti</li>
+        <li>Esthétique soignée et adaptée à l’image du projet voulu par le maître d’ouvrage</li>
+        <li>Adaptation au site et valorisation des existants</li>
+        <li>Cohérence optimale entre fonctionnalité, confort et coûts de fonctionnement</li>
+        <li>Attention particulière apportée aux détails et à la qualité des finitions</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="image-section1">
+    <img src="img/Image1.png" alt="Portrait de NDONG Régis Arnaud" />
+  </section>
+</main>
+
 
   <footer>
     <p>&copy; 2025 LEGROUPESUDCONCEPTION – Site créé par Khansu Group</p>
   </footer>
+ <!-- Conteneur pour les sous-menus flottants -->
+ <div id="submenu-container"></div>
+
+ <!-- Script JS -->
+ <script>
+   window.addEventListener('DOMContentLoaded', () => {
+     const sidebar = document.getElementById('sidebar');
+     const menuToggle = document.getElementById('menu-toggle');
+     const closeSidebar = document.getElementById('close-sidebar');
+     const submenuContainer = document.getElementById('submenu-container');
+     const loaderBar = document.getElementById('loader-bar');
+     let submenuTimeout = null;
+ 
+     // === Barre de chargement ===
+     function simulateLoader() {
+       loaderBar.style.width = '40%';
+       setTimeout(() => {
+         loaderBar.style.width = '75%';
+       }, 300);
+       setTimeout(() => {
+         loaderBar.style.width = '100%';
+         setTimeout(() => {
+           loaderBar.style.display = 'none';
+         }, 500);
+       }, 800);
+     }
+ 
+     simulateLoader(); // Appel une fois le DOM prêt
+ 
+     // === Menu mobile ===
+     menuToggle?.addEventListener('click', () => {
+       sidebar?.classList.add('active');
+     });
+ 
+     closeSidebar?.addEventListener('click', () => {
+       sidebar?.classList.remove('active');
+     });
+ 
+     // === Sous-menus flottants ===
+     document.querySelectorAll('.has-submenu').forEach(item => {
+       const submenu = item.querySelector('.submenu');
+       if (!submenu) return;
+ 
+       item.addEventListener('mouseenter', () => {
+         clearTimeout(submenuTimeout);
+         document.querySelectorAll('.submenu-float').forEach(el => el.remove());
+ 
+         const rect = item.getBoundingClientRect();
+         const clone = submenu.cloneNode(true);
+         clone.classList.add('submenu-float');
+         clone.style.position = 'absolute';
+         clone.style.top = `${rect.top + rect.height + window.scrollY}px`;
+         clone.style.left = `${rect.left}px`;
+         clone.style.zIndex = '9999';
+ 
+         clone.addEventListener('mouseenter', () => clearTimeout(submenuTimeout));
+         clone.addEventListener('mouseleave', () => {
+           submenuTimeout = setTimeout(() => {
+             document.querySelectorAll('.submenu-float').forEach(el => el.remove());
+           }, 200);
+         });
+ 
+         submenuContainer?.appendChild(clone);
+       });
+ 
+       item.addEventListener('mouseleave', () => {
+         submenuTimeout = setTimeout(() => {
+           document.querySelectorAll('.submenu-float').forEach(el => el.remove());
+         }, 200);
+       });
+     });
+   });
+ </script>
+ 
+
 </body>
 </html>
-
-
-<script>
-  window.addEventListener('DOMContentLoaded', () => {
-    const content = document.querySelector('.main-content');
-    const sidebar = document.getElementById('sidebar');
-    const menuToggle = document.getElementById('menu-toggle');
-    const closeSidebar = document.getElementById('close-sidebar');
-    const arrowToggle = document.getElementById('arrow-toggle');
-    const rootBody = document.body;
-  
-    // ✅ Apparition du contenu principal
-    content.classList.add('fade-in');
-  
-    // ✅ Mobile : ouvrir la sidebar
-    menuToggle.addEventListener('click', () => {
-      sidebar.classList.add('active');
-    });
-  
-    // ✅ Mobile : fermer la sidebar avec la croix
-    closeSidebar.addEventListener('click', () => {
-      sidebar.classList.remove('active');
-      menuToggle.classList.remove('open');
-    });
-  
-    // ✅ Desktop : basculer sidebar avec la flèche
-    arrowToggle.addEventListener('click', () => {
-      rootBody.classList.toggle('sidebar-closed');
-    });
-  
-    // ✅ Affichage des sous-menus au clic (et un seul à la fois)
-    document.querySelectorAll('.submenu-toggle').forEach(toggle => {
-      toggle.addEventListener('click', (e) => {
-        e.preventDefault();
-        const parent = toggle.closest('.has-submenu');
-        document.querySelectorAll('.has-submenu').forEach(item => {
-          if (item !== parent) item.classList.remove('active');
-        });
-        parent.classList.toggle('active');
-      });
-    });
-  
-    // ✅ Sous-menus peuvent naviguer normalement
-    document.querySelectorAll('.submenu li a').forEach(link => {
-      // Pas de blocage ici : comportement normal (changement de page)
-    });
-  });
-  </script>

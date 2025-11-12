@@ -4,31 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Accueil</title>
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="loader-bar" id="loader-bar"></div>
 
-  <!-- Bouton hamburger -->
+
+  <!-- Bouton hamburger (mobile uniquement) -->
   <div class="menu-toggle" id="menu-toggle">
     <span></span>
     <span></span>
     <span></span>
   </div>
-  <!-- Flèche pour desktop -->
-<div class="arrow-toggle" id="arrow-toggle">&#10094;</div>
-
 
   <!-- Barre latérale -->
   <aside class="sidebar" id="sidebar">
     <div class="close-sidebar" id="close-sidebar">X</div>
-    <div class="logo">GSC</div>
-    <h2>LE GROUPE SUD<br>CONCEPTION</h2>
+  <div class="logo">
+    <img src="img/logo_LEGROUPESUD-CONCEPTION.jpg" alt="Logo Le Groupe Sud Conception">
+  </div>
+    
     <nav>
       <ul>
         <li><a href="index.html">Accueil</a></li>
 
         <li class="has-submenu">
-          <a href="#" class="submenu-toggle">Á propos</a>
+          <a href="#" class="submenu-toggle">À propos</a>
           <ul class="submenu">
             <li><a href="bio.html">Biographie</a></li>
             <li><a href="equipe.html">Notre équipe</a></li>
@@ -48,84 +50,118 @@
           <ul class="submenu">
             <li><a href="architec.html">Architecture</a></li>
             <li><a href="inte.html">Architecture d'intérieur</a></li>
-            <li><a href="renov.html">Rénovation</Ruby></a></li>
+            <li><a href="renov.html">Rénovation</a></li>
             <li><a href="conseil.html">Conseil</a></li>
           </ul>
         </li>
 
+        <li><a href="videos.html">Médias</a></li>
         <li><a href="contacte.html">Contact</a></li>
       </ul>
     </nav>
   </aside>
 
   <!-- Contenu principal -->
-  <main class="content main-content">
-    <section class="intro">
-      <h1>Créer des espaces d'exception</h1>
-      <p>Bienvenue sur le site de le groupe sud conception, votre allié dans la conception de projets modernes et durables. Nous combinons expertise technique et créativité pour bâtir un avenir élégant.</p>
-      <a href="bio.html" class="btn">En savoir plus</a>
-    </section>
+  <div class="main-content">
+    <main class="content">
+      <section class="intro">
+        <h1>Créer des espaces d'exception</h1>
+        <p>Bienvenue sur le site de le groupe sud conception, votre allié dans la conception de projets modernes et durables. Nous combinons expertise technique et créativité pour bâtir un avenir élégant.</p>
+        <a href="bio.html" class="btn">En savoir plus</a>
+      </section>
 
-    <section class="image-section">
-      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Bâtiment moderne">
-    </section>
-  </main>
-
-  <script src="app.js"></script>
+      <section class="image-section">
+        <img src="img/T1.jfif" alt="Bâtiment moderne">
+      </section>
+    </main>
+  </div>
 
   <footer>
     <p>&copy; 2025 LEGROUPESUDCONCEPTION – Site créé par Khansu Group</p>
   </footer>
+
+  <!-- Conteneur pour les sous-menus flottants -->
+  <div id="submenu-container"></div>
+
+  <!-- Script JS -->
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const sidebar = document.getElementById('sidebar');
+      const menuToggle = document.getElementById('menu-toggle');
+      const closeSidebar = document.getElementById('close-sidebar');
+      const submenuContainer = document.getElementById('submenu-container');
+      const loaderBar = document.getElementById('loader-bar');
+      let submenuTimeout = null;
+  
+      // === Barre de chargement ===
+      function simulateLoader() {
+        loaderBar.style.width = '40%';
+        setTimeout(() => {
+          loaderBar.style.width = '75%';
+        }, 300);
+        setTimeout(() => {
+          loaderBar.style.width = '100%';
+          setTimeout(() => {
+            loaderBar.style.display = 'none';
+          }, 500);
+        }, 800);
+      }
+  
+      simulateLoader(); // Appel une fois le DOM prêt
+  
+      // === Menu mobile ===
+      menuToggle?.addEventListener('click', () => {
+        sidebar?.classList.add('active');
+      });
+  
+      closeSidebar?.addEventListener('click', () => {
+        sidebar?.classList.remove('active');
+      });
+  
+      // === Sous-menus flottants ===
+      document.querySelectorAll('.has-submenu').forEach(item => {
+        const submenu = item.querySelector('.submenu');
+        if (!submenu) return;
+  
+        item.addEventListener('mouseenter', () => {
+          clearTimeout(submenuTimeout);
+          document.querySelectorAll('.submenu-float').forEach(el => el.remove());
+  
+          const rect = item.getBoundingClientRect();
+          const clone = submenu.cloneNode(true);
+          clone.classList.add('submenu-float');
+          clone.style.position = 'absolute';
+          clone.style.top = `${rect.top + rect.height + window.scrollY}px`;
+          clone.style.left = `${rect.left}px`;
+          clone.style.zIndex = '9999';
+  
+          clone.addEventListener('mouseenter', () => clearTimeout(submenuTimeout));
+          clone.addEventListener('mouseleave', () => {
+            submenuTimeout = setTimeout(() => {
+              document.querySelectorAll('.submenu-float').forEach(el => el.remove());
+            }, 200);
+          });
+  
+          submenuContainer?.appendChild(clone);
+        });
+  
+        item.addEventListener('mouseleave', () => {
+          submenuTimeout = setTimeout(() => {
+            document.querySelectorAll('.submenu-float').forEach(el => el.remove());
+          }, 200);
+        });
+      });
+    });
+  </script>
+  
+
 </body>
 </html>
 
 
-<script>
-  window.addEventListener('DOMContentLoaded', () => {
-    const content = document.querySelector('.main-content');
-    const sidebar = document.getElementById('sidebar');
-    const menuToggle = document.getElementById('menu-toggle');
-    const closeSidebar = document.getElementById('close-sidebar');
-    const arrowToggle = document.getElementById('arrow-toggle');
-    const rootBody = document.body;
   
-    // ✅ Apparition du contenu principal
-    content.classList.add('fade-in');
   
-    // ✅ Mobile : ouvrir la sidebar
-    menuToggle.addEventListener('click', () => {
-      sidebar.classList.add('active');
-    });
-  
-    // ✅ Mobile : fermer la sidebar avec la croix
-    closeSidebar.addEventListener('click', () => {
-      sidebar.classList.remove('active');
-      menuToggle.classList.remove('open');
-    });
-  
-    // ✅ Desktop : basculer sidebar avec la flèche
-    arrowToggle.addEventListener('click', () => {
-      rootBody.classList.toggle('sidebar-closed');
-    });
-  
-    // ✅ Affichage des sous-menus au clic (et un seul à la fois)
-    document.querySelectorAll('.submenu-toggle').forEach(toggle => {
-      toggle.addEventListener('click', (e) => {
-        e.preventDefault();
-        const parent = toggle.closest('.has-submenu');
-        document.querySelectorAll('.has-submenu').forEach(item => {
-          if (item !== parent) item.classList.remove('active');
-        });
-        parent.classList.toggle('active');
-      });
-    });
-  
-    // ✅ Sous-menus peuvent naviguer normalement
-    document.querySelectorAll('.submenu li a').forEach(link => {
-      // Pas de blocage ici : comportement normal (changement de page)
-    });
-  });
-  </script>
+
   
 
   

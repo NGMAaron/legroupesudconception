@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accueil</title>
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="loader-bar" id="loader-bar"></div>
+
+  <!-- Bouton hamburger (mobile uniquement) -->
+  <div class="menu-toggle" id="menu-toggle">
+    <span></span><span></span><span></span>
+  </div>
+
+  <!-- Barre latérale -->
+  <aside class="sidebar" id="sidebar">
+    <div class="close-sidebar" id="close-sidebar">X</div>
+    <div class="logo">
+      <img src="img/logo_LEGROUPESUD-CONCEPTION.jpg" alt="Logo Le Groupe Sud Conception">
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="index.html" class="active">Accueil</a></li>
+        <li class="has-submenu">
+          <a href="#">À propos</a>
+          <ul class="submenu">
+            <li><a href="bio.html">Biographie</a></li>
+            <li><a href="equipe.html">Notre équipe</a></li>
+          </ul>
+        </li>
+        <li class="has-submenu">
+          <a href="#">Réalisations</a>
+          <ul class="submenu">
+            <li><a href="appart.html">Appartements</a></li>
+            <li><a href="immeuble.html">Immeubles</a></li>
+          </ul>
+        </li>
+        <li class="has-submenu">
+          <a href="#">Services</a>
+          <ul class="submenu">
+            <li><a href="architec.html">Architecture</a></li>
+            <li><a href="inte.html">Architecture d'intérieur</a></li>
+            <li><a href="renov.html">Rénovation</a></li>
+            <li><a href="conseil.html">Conseil</a></li>
+          </ul>
+        </li>
+        <li><a href="videos.html">Médias</a></li>
+        <li><a href="contacte.html">Contact</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <section class="project-section">
+      <div class="overlay-text">
+        <h1>Nos réalisations en vidéo</h1>
+        <p>Architecture, Urbanisme, Ingénierie</p>
+      </div>
+
+      <div class="building-gallery">
+        <div class="building-card" data-video="img/0505.mp4">
+          <video src="img/0505.mp4" muted autoplay loop></video>
+          <div class="building-info">
+            <h2>Tour Nova</h2>
+            <p>Découvrez notre projet phare en vidéo.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+
+    <!-- Lightbox vidéo -->
+    <div class="lightbox" id="lightbox">
+      <div class="lightbox-content">
+        <span class="close-lightbox" id="close-lightbox">&times;</span>
+        <video id="lightbox-video" controls></video>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 LEGROUPESUDCONCEPTION – Site créé par Khansu Group</p>
+  </footer>
+
+ <script>
+window.addEventListener('DOMContentLoaded', () => {
+  // === Sélections des éléments ===
+  const loaderBar = document.getElementById('loader-bar');
+  const sidebar = document.getElementById('sidebar');
+  const menuToggle = document.getElementById('menu-toggle');
+  const closeSidebar = document.getElementById('close-sidebar');
+  const submenuContainer = document.getElementById('submenu-container');
+  const lightbox = document.getElementById('lightbox');
+  const videoEl = document.getElementById('lightbox-video');
+  const closeBtn = document.getElementById('close-lightbox');
+
+  let submenuTimeout = null;
+
+  // === BARRE DE CHARGEMENT ===
+  function simulateLoader() {
+    loaderBar.style.width = '40%';
+    setTimeout(() => { loaderBar.style.width = '75%'; }, 300);
+    setTimeout(() => {
+      loaderBar.style.width = '100%';
+      setTimeout(() => { loaderBar.style.display = 'none'; }, 500);
+    }, 800);
+  }
+  simulateLoader();
+
+  // === MENU MOBILE ===
+  menuToggle?.addEventListener('click', () => {
+    sidebar?.classList.add('active');
+  });
+
+  closeSidebar?.addEventListener('click', () => {
+    sidebar?.classList.remove('active');
+  });
+
+  // === SOUS-MENUS FLOTTANTS ===
+  document.querySelectorAll('.has-submenu').forEach(item => {
+    const submenu = item.querySelector('.submenu');
+    if (!submenu) return;
+
+    item.addEventListener('mouseenter', () => {
+      clearTimeout(submenuTimeout);
+      document.querySelectorAll('.submenu-float').forEach(el => el.remove());
+
+      const rect = item.getBoundingClientRect();
+      const clone = submenu.cloneNode(true);
+      clone.classList.add('submenu-float');
+      clone.style.position = 'absolute';
+      clone.style.top = `${rect.top + rect.height + window.scrollY}px`;
+      clone.style.left = `${rect.left}px`;
+      clone.style.zIndex = '9999';
+
+      clone.addEventListener('mouseenter', () => clearTimeout(submenuTimeout));
+      clone.addEventListener('mouseleave', () => {
+        submenuTimeout = setTimeout(() => {
+          document.querySelectorAll('.submenu-float').forEach(el => el.remove());
+        }, 200);
+      });
+
+      submenuContainer?.appendChild(clone);
+    });
+
+    item.addEventListener('mouseleave', () => {
+      submenuTimeout = setTimeout(() => {
+        document.querySelectorAll('.submenu-float').forEach(el => el.remove());
+      }, 200);
+    });
+  });
+
+  // === LIGHTBOX VIDÉO ===
+  document.querySelectorAll('.building-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const videoSrc = card.dataset.video;
+      videoEl.src = videoSrc;
+      lightbox.classList.add('show');
+      videoEl.play();
+    });
+  });
+
+  // === FERMETURE LIGHTBOX ===
+  closeBtn?.addEventListener('click', () => {
+    lightbox.classList.remove('show');
+    videoEl.pause();
+    videoEl.src = "";
+  });
+
+  lightbox?.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+      lightbox.classList.remove('show');
+      videoEl.pause();
+      videoEl.src = "";
+    }
+  });
+});
+</script>
+
+</body>
+</html>
+
+
